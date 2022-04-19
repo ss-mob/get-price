@@ -6,16 +6,16 @@ def lambda_handler(event, context):
     db_host = os.environ['db_host']
     client = boto3.resource('dynamodb')
     table = client.Table(db_host)
-    response = table.put_item(
-        Item={
-
-            'productId': event['productId'],
-            'productName': event['productName'],
-            'price': event['price']
+    response = table.get_item(
+        Key={
+            'productId': event['productId']
         }
     )
 
-    return {
-        'statusCode': response['ResponseMetadata']['HTTPStatusCode'],
-        'body': 'Product ' + event['productId'] + ' updated'
-    }
+    if 'Item' in response:
+        return response['Item']
+    else:
+        return {
+            'statusCode': '404',
+            'body': 'Product not found'
+        }
