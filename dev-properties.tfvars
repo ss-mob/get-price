@@ -1,6 +1,6 @@
 api_gw_domain_name   = "customer.dev.api.mobaws.mobiquitylab.tech"
 api_gw_name          = "mob-api-gateway"
-api_mapping_key      = "demo"
+api_mapping_key      = "v1/get"
 aws_profile          = "temp_mob-bp-dng"
 handler_name         = "index.lambda_handler"
 lambda_function_name = "get-product-price"
@@ -10,7 +10,7 @@ package_url          = "https://codeload.github.com/ss-mob/get-price/"
 region               = "eu-central-1"
 service_name         = "get-price"
 stage                = "dev"
-route_key            = "GET /get-price"
+route_key            = "GET /price"
 
 ## Optional
 dynamo-table-name = "product"
