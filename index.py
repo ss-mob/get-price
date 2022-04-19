@@ -8,7 +8,7 @@ def lambda_handler(event, context):
     table = client.Table(db_host)
     response = table.get_item(
         Key={
-            'productId': event['productId']
+            'productId': event['queryStringParameters']['productId']
         }
     )
 
