@@ -1,6 +1,6 @@
 import boto3
 import os
-
+import json
 
 def lambda_handler(event, context):
     db_host = os.environ['db_host']
@@ -13,7 +13,11 @@ def lambda_handler(event, context):
     )
 
     if 'Item' in response:
-        return response['Item']
+        return {
+            'statusCode': '200',
+            'body': json.dumps(response['Item'])
+            }
+        
     else:
         return {
             'statusCode': '404',
